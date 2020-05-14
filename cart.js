@@ -132,3 +132,4 @@ async function submitFormData(cartInfos) {
   window.location = 'confirmation.html?id=' + response.orderId + '&price=' + total;
   localStorage.clear();
 }
+
