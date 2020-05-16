@@ -9,7 +9,9 @@ request.responseType = 'json';
 request.send();
 
 request.onerror = function() {
-  alert('Server error, please try again later.');
+  // alert('Server error, please try again later.');
+  const errorServer = document.getElementById('errorServer');
+  errorServer.textContent = 'There was an error connecting to the server. ';
 }
 
 request.onload = function() {

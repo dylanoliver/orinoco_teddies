@@ -2,25 +2,27 @@
 
 //Api request
 
-var section = document.querySelector('#section');
-var params = new URLSearchParams(window.location.search); //URL query parameters
-var id = params.get("id");
-var api = 'http://localhost:3000/api/teddies/';
-var request = new XMLHttpRequest();
+const section = document.querySelector('#section');
+const params = new URLSearchParams(window.location.search); //URL query parameters
+const id = params.get("id");
+const api = 'http://localhost:3000/api/teddies/';
+const request = new XMLHttpRequest();
 request.open('GET', api + id);
 request.responseType = 'json';
 request.send();
 
 request.onerror = function () {
-    alert('Server error, please try again later');
+    // alert('Server error, please try again later');
+    const errorServer = document.getElementById('errorServer');
+    errorServer.textContent = 'There was an error connecting to the server. ';
 };
 
 //Dynamic function
 
 request.onload = function () {
-    var product = request.response;
+    const product = request.response;
 
-    var { myImage, myH3, myPara1, myPara2, myPara3, link, myList, myArticle, div1, div2 } = varElements();
+    const { myImage, myH3, myPara1, myPara2, myPara3, link, myList, myArticle, div1, div2 } = constElements();
 
     elementsContent(myImage, product, myH3, myPara1, myPara2, myPara3, link);
 
@@ -35,17 +37,17 @@ request.onload = function () {
 
 //Function details
 
-function varElements() {
-    var myArticle = document.createElement('article');
-    var div1 = document.createElement('div');
-    var div2 = document.createElement('div');
-    var myImage = document.createElement('img');
-    var myH3 = document.createElement('h3');
-    var myPara1 = document.createElement('p');
-    var myPara2 = document.createElement('p');
-    var myPara3 = document.createElement('p');
-    var myList = document.createElement('select');
-    var link = document.createElement('a');
+function constElements() {
+    const myArticle = document.createElement('article');
+    const div1 = document.createElement('div');
+    const div2 = document.createElement('div');
+    const myImage = document.createElement('img');
+    const myH3 = document.createElement('h3');
+    const myPara1 = document.createElement('p');
+    const myPara2 = document.createElement('p');
+    const myPara3 = document.createElement('p');
+    const myList = document.createElement('select');
+    const link = document.createElement('a');
     return { myImage, myH3, myPara1, myPara2, myPara3, link, myList, myArticle, div1, div2 };
 }
 
@@ -60,9 +62,9 @@ function elementsContent(myImage, product, myH3, myPara1, myPara2, myPara3, link
 }
 
 function colorsOptions(product, myList) {
-    var colorsList = product.colors;
-    for (var j = 0; j < colorsList.length; j++) {
-        var listItem = document.createElement('option');
+    const colorsList = product.colors;
+    for (let j = 0; j < colorsList.length; j++) {
+        const listItem = document.createElement('option');
         listItem.textContent = colorsList[j];
         myList.appendChild(listItem);
     }
@@ -97,13 +99,13 @@ function setAttribute(myArticle, div1, myImage, div2, myH3, myPara1, myPara2, my
 //Local storage in browser for the shopping cart
 
 function storageLocal(product, link) {
-    var productData = {
+    const productData = {
         name: product.name,
         price: product.price,
         id: product._id,
         qty: 1
     };
-    var itemsArray = localStorage.getItem('cart') ?
+    const itemsArray = localStorage.getItem('cart') ?
         JSON.parse(localStorage.getItem('cart')) : [];
     itemsArray.push(productData);
     link.addEventListener('click', function () {
