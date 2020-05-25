@@ -56,7 +56,7 @@ function elementsContent(myImage, product, myH3, myPara1, myPara2, myPara3, link
     myH3.textContent = product.name;
     myPara1.textContent = product.description;
     myPara2.textContent = 'Price:' + ' ' + product.price + '€';
-    myPara3.textContent = 'Lense selection:';
+    myPara3.textContent = 'Colour selection:';
     link.textContent = 'Add to the cart';
     link.href = 'cart.html';
 }
